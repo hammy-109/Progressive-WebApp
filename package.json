@@ -1,5 +1,5 @@
 {
-  "name": "create-react-pwa",
+  "name": "Progressive",
   "version": "0.1.0",
   "private": true,
   "devDependencies": {
@@ -13,7 +13,6 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build && sw-precache --config=sw-precache-config.js",
-    "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "test": "react-scripts test --env=jsdom"
   }
 }

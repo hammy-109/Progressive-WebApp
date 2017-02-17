@@ -1,20 +1,3 @@
-<!-- START doctoc generated TOC please keep comment here to allow auto update -->
-<!-- DON'T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE -->
-
-
-- [What's this project?](#whats-this-project)
-- [What changes were made?](#what-changes-were-made)
-  - [Adding in a service worker](#adding-in-a-service-worker)
-  - [Adding in a Web App Manifest](#adding-in-a-web-app-manifest)
-  - [Adding in a GitHub deployment step](#adding-in-a-github-deployment-step)
-- [What additional changes might be needed?](#what-additional-changes-might-be-needed)
-  - [I've added in React Router and now my URLs don't work offline](#ive-added-in-react-router-and-now-my-urls-dont-work-offline)
-  - [I'm using cross-origin APIs or resources, and they aren't working while offline](#im-using-cross-origin-apis-or-resources-and-they-arent-working-while-offline)
-- [How can I try out the Progressive Web App?](#how-can-i-try-out-the-progressive-web-app)
-- [How can I report bugs?](#how-can-i-report-bugs)
-
-<!-- END doctoc generated TOC please keep comment here to allow auto update -->
-
 ## What's this project?
 
 This is one approach to taking a project created with the

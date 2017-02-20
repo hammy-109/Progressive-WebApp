@@ -16,18 +16,18 @@ class App extends Component {
     this.frame.src = URL.createObjectURL(file);
   }
   initGeolocation() {
-  console.log("in initGeolocation ");
-  if (navigator && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.successCallback, this.errorCallback);
-  }
-  else {
-    console.log('Geolocation is not supported');
-        }
-}
+	  console.log("in initGeolocation ");
+	  if (navigator && navigator.geolocation) {
+	      navigator.geolocation.getCurrentPosition(this.successCallback, this.errorCallback);
+	  }
+	  else {
+	    console.log('Geolocation is not supported');
+	  }
+	}
  
-errorCallback() {
-  console.log("in errorCallback ");
-}
+	errorCallback() {
+	  console.log("in errorCallback ");
+	}
  
   successCallback(position) {
     console.log("in successCallback ")
@@ -52,24 +52,21 @@ errorCallback() {
       <div className="App" > 
         <br/>
         <input text='Camera' style={style.btn} type="file" accept="image/*" capture="camera" id="camera" onChange={this.captureButton}/>
-        <span>
-            <button id="butLocation"  class="headerButton" onClick={this.initGeolocation.bind(this)}>
-            change </button>
-            </span>
+        <button id="butLocation"  
+          class="headerButton" 
+          onClick={this.initGeolocation.bind(this)}>
+          change
+        </button>
         <div>
           <img id='frame' style={style} width='320' height='500' role="presentation"/> 
         </div>
         <div className="App-map">
           <img id="static-map" role="presentation" /> 
         </div>
-        
         <div className="App-show-result1">
           <span > latitude:  </span> <span id="demo1"></span> 
           <span  > longitude:  </span> <span id="demo2"></span>
         </div>
-
-
-
       </div>
     );
   }

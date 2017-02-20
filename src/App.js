@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-//import logo from './logo.svg';
+import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -16,6 +16,35 @@ class App extends Component {
    const file = e.target.files[0]; 
     this.frame.src = URL.createObjectURL(file);
   }
+  initGeolocation() {
+  console.log("in initGeolocation ");
+  if (navigator && navigator.geolocation) {
+      navigator.geolocation.getCurrentPosition(this.successCallback, this.errorCallback);
+  }
+  else {
+    console.log('Geolocation is not supported');
+        }
+}
+ 
+errorCallback() {
+  console.log("in errorCallback ");
+}
+ 
+  successCallback(position) {
+    console.log("in successCallback ")
+    var mapUrl = "http://maps.google.com/maps/api/staticmap?center=";
+    mapUrl = mapUrl + position.coords.latitude + ',' + position.coords.longitude;
+    console.log(position.coords.latitude);
+    console.log(position.coords.longitude);
+    mapUrl = mapUrl + '&zoom=15&size=512x512&maptype=roadmap&sensor=false';
+    console.log(mapUrl);
+    var imgElement = document.getElementById("static-map");
+    imgElement.src = mapUrl;
+    var x = position.coords.latitude;
+    document.getElementById("demo1").innerHTML = x;
+    var x = position.coords.latitude;
+    document.getElementById("demo2").innerHTML = x;
+  }
   render() { 
     const style = {
       'border-style': 'none',
@@ -28,9 +57,24 @@ class App extends Component {
       <div className="App" > 
         <br/>
         <input text='Camera' style={style.btn} type="file" accept="image/*" capture="camera" id="camera" onChange={this.captureButton}/>
+        <span>
+            <button id="butLocation"  class="headerButton" onClick={() => { this.initGeolocation() }}>
+            change </button>
+            </span>
         <div>
           <img id='frame' style={style} width='320' height='500' role="presentation"/> 
         </div>
+        <div className="App-map">
+          <img id="static-map" /> 
+        </div>
+        
+        <div className="App-show-result1">
+          <span > latitude:  </span> <span id="demo1"></span> 
+          <span  > longitude:  </span> <span id="demo2"></span>
+        </div>
+
+
+
       </div>
     );
   }

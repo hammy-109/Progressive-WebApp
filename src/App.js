@@ -53,7 +53,7 @@ errorCallback() {
         <br/>
         <input text='Camera' style={style.btn} type="file" accept="image/*" capture="camera" id="camera" onChange={this.captureButton}/>
         <span>
-            <button id="butLocation"  class="headerButton" onClick={() => { this.initGeolocation() }}>
+            <button id="butLocation"  class="headerButton" onClick={this.initGeolocation.bind(this)}>
             change </button>
             </span>
         <div>

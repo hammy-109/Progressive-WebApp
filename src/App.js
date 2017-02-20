@@ -60,7 +60,7 @@ errorCallback() {
           <img id='frame' style={style} width='320' height='500' role="presentation"/> 
         </div>
         <div className="App-map">
-          <img id="static-map" /> 
+          <img id="static-map" role="presentation" /> 
         </div>
         
         <div className="App-show-result1">

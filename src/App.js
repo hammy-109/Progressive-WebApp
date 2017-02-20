@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 
 class App extends Component {
@@ -32,18 +31,14 @@ errorCallback() {
  
   successCallback(position) {
     console.log("in successCallback ")
-    var mapUrl = "http://maps.google.com/maps/api/staticmap?center=";
-    mapUrl = mapUrl + position.coords.latitude + ',' + position.coords.longitude;
-    console.log(position.coords.latitude);
-    console.log(position.coords.longitude);
-    mapUrl = mapUrl + '&zoom=15&size=512x512&maptype=roadmap&sensor=false';
-    console.log(mapUrl);
-    var imgElement = document.getElementById("static-map");
+    let mapUrl = "http://maps.google.com/maps/api/staticmap?center=" + position.coords.latitude + ',' 
+    + position.coords.longitude + '&zoom=15&size=512x512&maptype=roadmap&sensor=false';
+    const imgElement = document.getElementById("static-map");
     imgElement.src = mapUrl;
-    var x = position.coords.latitude;
+    const x = position.coords.latitude;
     document.getElementById("demo1").innerHTML = x;
-    var x = position.coords.latitude;
-    document.getElementById("demo2").innerHTML = x;
+    const y = position.coords.longitude;
+    document.getElementById("demo2").innerHTML = y;
   }
   render() { 
     const style = {

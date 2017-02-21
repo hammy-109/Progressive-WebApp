@@ -7,7 +7,7 @@ class CameraCmp extends Component {
 		super(props);
 		console.log(this.props,"here");
 		 this.state = {
-      imgUrl : true,
+      imgUrl : null,
     }
 	}
 
@@ -28,14 +28,15 @@ class CameraCmp extends Component {
     const style = {
       'borderStyle': 'none',
       width: '95%',
-      btn:{
-        color:'white'
-      }
+      
     };
+    const divHeight ={
+      height: '423px',
+    } 
 		return 	(
-			<div>
-		  	<input  style={style.btn} type="file" accept="image/*" capture="camera" id="camera" onChange={this.captureButton.bind(this)} />	
-          <img src={this.state.imgUrl} style={style} width='320' height='500' role="presentation"/> 
+			<div style={divHeight}>
+		  	<input  type="file" className="cam-btn" accept="image/*" capture="camera" id="camera" onChange={this.captureButton.bind(this)} />	
+          <img src={this.state.imgUrl} className="App-img" style={style} width='320'  role="presentation"/> 
       </div>
 		);
 	}

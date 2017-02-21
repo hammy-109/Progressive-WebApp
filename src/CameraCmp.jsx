@@ -55,7 +55,6 @@ class CameraCmp extends Component {
         facingMode={this.state.facingMode}
         style={style.camera}
       />
-      <p>{this.state.result}</p>
     </div>);
     
     const output = (<div>

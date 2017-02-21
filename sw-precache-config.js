@@ -3,6 +3,7 @@ module.exports = {
   staticFileGlobs: [
     'build/*.html',
     'build/manifest.json',
+    'build/logo.png',
     'build/static/**/!(*map*)'
   ],
   dontCacheBustUrlsMatching: /\.\w{8}\./,

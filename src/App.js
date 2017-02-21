@@ -1,84 +1,80 @@
 import React, { Component } from 'react';
-import './App.css';
-import CameraCmp from './CameraCmp.jsx';
-import MapCmp from './mapCmp.jsx';
+
 import Tabs from 'react-tabs-navigation';
 import SwipeableViews from 'react-swipeable-views';
+
+import CameraCmp from './CameraCmp.jsx';
+import MapCmp from './mapCmp.jsx';
+
+import './App.css';
 
 class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      swapIndex : 0
+      tabIndex : 0
     }
   };
 
-  onTabChange(index){
-    console.log("swapped",index);
-    this.setState({swapIndex : index})
-  }
-
+  onTabChange = (tabIndex) => {
+    this.setState({ tabIndex });
+  };
 
   render() { 
-
-    const styles = {
-      slide: {
-        padding: 15,
-        minHeight: 100,
-        color: '#fff',
+    const style ={
+      linestyle:{
+        backgroundColor : 'rgba(0,173,255,.54)',
+        height  : '3px',
       },
-      slide1: {
-        background: '#FEA900',
+      tabsStyle:{
+        backgroundColor : 'white',
+        color : 'rgba(0,173,255,.54)',
+        focus: {
+          backgroundColor : 'white',
+          color : 'rgba(0,173,255,.54)',
+        },
+        hover :{
+          backgroundColor : 'white',
+          color : 'rgba(0,173,255,.54)',
+        }
       },
-      slide2: {
-        background: '#B3DC4A',
-      },
-      slide3: {
-        background: '#6AC0FF',
-      },
-    };
-
-    const tabStyle ={
-      "backgroundColor":"rgba(69, 164, 219, 0.0980392)"
     }
-
     return (
       <div>
-
-      <Tabs onTabChange={this.onTabChange.bind(this)}  selected={this.state.swapIndex} color="rgba(69, 164, 219, 0.0980392)"
-      tabs={[
-        {
-          children: () => (
-            <div>
-
-            </div>
-            ),
-          displayName: 'Camera'
-          },
-          {
-            children: () => (
-            <div>
-
-            </div>
-            ),
-            displayName: 'Map'
+        <Tabs 
+          onTabChange={this.onTabChange}
+          selected={this.state.tabIndex} 
+          lineStyle={style.linestyle}
+          tabsStyle={style.tabsStyle}
+          tabs={
+            [
+              {
+                children: () => (
+                  <div></div>
+                ),
+                displayName: 'QR reader'
+              },
+              {
+                children: () => (
+                <div></div>
+                ),
+                displayName: 'Location'
+              }
+            ]
           }
-          ]
-        }
-          />
-
-
-          <SwipeableViews index = {this.state.swapIndex} onChangeIndex={this.onTabChange.bind(this)}> 
-            <div >
-              <CameraCmp />
-            </div>
-            <div>
-              <MapCmp />
-            </div>
-          </SwipeableViews>
+        />
+        <SwipeableViews 
+          index={this.state.tabIndex} 
+          onChangeIndex={this.onTabChange}> 
+          <div>
+            <CameraCmp />
           </div>
-          );
-        }
-      }
-
-      export default App;
+          <div>
+            <MapCmp />
+          </div>
+        </SwipeableViews>
+      </div>
+    );
+  }
+}
+export default App;

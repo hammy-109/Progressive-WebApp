@@ -1,46 +1,72 @@
 import './App.css';
-
 import React, {Component} from 'react';
+import QrReader from 'react-qr-reader';
 
 class CameraCmp extends Component {
+
 	constructor(props) {
 		super(props);
-		console.log(this.props,"here");
 		 this.state = {
       imgUrl : null,
+      delay: 100,
+      result: 'No result',
+      facingMode: 'rear',
+      screenTypeScan: true,
     }
 	}
 
-  componentDidMount() {
-    this.camera = document.getElementById('camera');
-    this.frame = document.getElementById('frame');
+  handleScan = (data) => {
+    this.setState({
+      result: data,
+      screenTypeScan: false,
+    })
   };
 
-	captureButton(e){
-		const file = e.target.files[0]; 
-    // this.frame.src = URL.createObjectURL(file);
-    this.setState({imgUrl : URL.createObjectURL(file)})
-	};
+  handleError = (err) => {
+    console.log(err)
+  };
 
-
+  toggleScan = () => {
+    this.setState({ screenTypeScan: !this.state.screenTypeScan });
+  };
 
 	render() {
     const style = {
-      'borderStyle': 'none',
-      width: '95%',
-      
-    };
-    const divHeight ={
-      height: '423px',
-    } 
-		return 	(
-			<div style={divHeight}>
-		  	<input  type="file" className="cam-btn" accept="image/*" capture="camera" id="camera" onChange={this.captureButton.bind(this)} />	
-          <img src={this.state.imgUrl} className="App-img" style={style} width='320'  role="presentation"/> 
-      </div>
-		);
-	}
+      camera :{
+      width :'fill',
+      height:400,
+      marginLeft:'auto',
+      marginRight:'auto',
+      },
+      heading:{
+        textAlign:'center',
+      }
+    }
+
+    const screenTypeScan = this.state.screenTypeScan;
+    
+    const scanner = (<div>
+      <h1 style={style.heading}>Scan QR code</h1>
+      <QrReader
+        maxImageSize={500}
+        delay={this.state.delay}
+        onError={this.handleError}
+        onScan={this.handleScan}
+        facingMode={this.state.facingMode}
+        style={style.camera}
+      />
+      <p>{this.state.result}</p>
+    </div>);
+    
+    const output = (<div>
+      <p>{this.state.result}</p>
+      <input type="button" value="Re-scan" onClick={this.toggleScan}/>
+    </div>);
+
+    if (screenTypeScan) {
+      return scanner;
+    }
+    return output;	
+  }
 }
 export default CameraCmp;
-
-

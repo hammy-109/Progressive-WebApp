@@ -1,9 +1,9 @@
 {
-  "short_name": "create-react-pwa",
-  "name": "Create React PWApp",
+  "short_name": "Lavalee Proto",
+  "name": "Lavalee Proto",
   "icons": [
     {
-      "src": "favicon.ico",
+      "src": "logo.png",
       "sizes": "192x192",
       "type": "image/png"
     }

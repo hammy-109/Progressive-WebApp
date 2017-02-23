@@ -7,17 +7,19 @@
     "sw-precache": "^4.2.2"
   },
   "dependencies": {
+    "flexboxgrid": "^6.3.1",
+    "google-map-react": "^0.10.3",
     "qrcode-react": "^0.1.10",
     "react": "^15.4.0",
     "react-dom": "^15.4.0",
     "react-native-scrollable-tab-view": "^0.7.2",
     "react-native-tab-view": "0.0.56",
+    "react-qr-reader": "^1.0.3",
     "react-simpletabs": "^0.7.0",
     "react-swipeable": "^3.9.2",
     "react-swipeable-views": "^0.10.8",
     "react-tab-view": "^1.0.5",
-    "react-tabs-navigation": "^0.4.4",
-    "react-qr-reader": "^1.0.3"
+    "react-tabs-navigation": "^0.4.4"
   },
   "scripts": {
     "start": "react-scripts start",

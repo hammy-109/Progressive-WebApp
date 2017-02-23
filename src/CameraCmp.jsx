@@ -45,7 +45,7 @@ class CameraCmp extends Component {
 
     const screenTypeScan = this.state.screenTypeScan;
     
-    const scanner = (<div>
+    const scanner = (<div className="row"> <div className="col-xs-offset-2 col-xs-8">
       <h1 style={style.heading}>Scan QR code</h1>
       <QrReader
         maxImageSize={500}
@@ -55,7 +55,7 @@ class CameraCmp extends Component {
         facingMode={this.state.facingMode}
         style={style.camera}
       />
-    </div>);
+    </div> </div>);
     
     const output = (<div>
       <p>{this.state.result}</p>

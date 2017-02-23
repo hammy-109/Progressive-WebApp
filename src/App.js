@@ -21,16 +21,17 @@ class App extends Component {
   };
 
   render() { 
-    const style ={
+   const style ={
       linestyle:{
-        backgroundColor : 'rgba(0,173,255,.54)',
+        backgroundColor : '#281B5C',
         height  : '3px',
       },
       tabsStyle:{
-        backgroundColor : 'white',
+        backgroundColor : '#003F87 ',
         color : 'rgba(0,173,255,.54)',
+
         focus: {
-          backgroundColor : 'white',
+          backgroundColor : '#10336b',
           color : 'rgba(0,173,255,.54)',
         },
         hover :{
@@ -41,38 +42,35 @@ class App extends Component {
     }
     return (
       <div>
-        <Tabs 
-          onTabChange={this.onTabChange}
-          selected={this.state.tabIndex} 
-          lineStyle={style.linestyle}
-          tabsStyle={style.tabsStyle}
-          tabs={
-            [
-              {
-                children: () => (
-                  <div></div>
-                ),
+        <div>
+          <Tabs
+            onTabChange={this.onTabChange}
+            selected={this.state.tabIndex} 
+            lineStyle={style.linestyle}
+            tabsStyle={style.tabsStyle}
+            tabs={
+              [{
                 displayName: 'QR reader'
-              },
-              {
-                children: () => (
-                <div></div>
-                ),
+              }, {
                 displayName: 'Location'
-              }
-            ]
-          }
-        />
-        <SwipeableViews 
-          index={this.state.tabIndex} 
-          onChangeIndex={this.onTabChange}> 
-          <div>
-            <CameraCmp />
-          </div>
-          <div>
-            <MapCmp />
-          </div>
-        </SwipeableViews>
+              }]}
+          />
+       </div>
+        
+        <div className="row">
+          <SwipeableViews 
+            index={this.state.tabIndex} 
+            onChangeIndex={this.onTabChange}> 
+            <div className="col-xs-12 fixer">
+              <CameraCmp />
+            </div>
+            <div className="col-xs-12 ">
+              <MapCmp />
+            </div>
+          </SwipeableViews>
+        </div>
+
+
       </div>
     );
   }

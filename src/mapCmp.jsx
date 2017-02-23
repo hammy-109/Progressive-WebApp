@@ -1,5 +1,5 @@
 import './App.css';
-
+// import GoogleMap from 'google-map-react';
 import React, {Component} from 'react';
 
 class MapCmp extends Component {
@@ -33,19 +33,24 @@ class MapCmp extends Component {
     document.getElementById("demo1").innerHTML = x.toFixed(3);
     const y = position.coords.longitude;
     document.getElementById("demo2").innerHTML = y.toFixed(3);
-  }
+}
 
   render(){
 
     return (
       <div>
-        <div className="App-map">
-          <img className="map-img"  src={this.state.mapUrl} role="presentation" /> 
+        <div className="row">
+          <div className="col-xs-offset-1 col-xs-10 App-map">
+           <img className="map-img"  src={this.state.mapUrl} role="presentation"  /> 
+          </div>
         </div>
-        <div className="App-show-result1">
-     		 <span > latitude:  </span> <span id="demo1"></span> <br />
-     		 <span  > longitude:  </span> <span id="demo2"></span>
-    		</div>
+
+        <div className="row">
+          <div className="col-xs-offset-4 col-xs-8 App-show-result1">
+     		   <span > latitude:  </span> <span id="demo1"></span> <br />
+     		   <span  > longitude:  </span> <span id="demo2"></span>
+          </div>
+        </div>
       </div>
     )
   }

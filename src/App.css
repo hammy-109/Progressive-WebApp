@@ -13,40 +13,48 @@
   padding: 20px;
   color: white;
 }
-
+.tab-over{
+  overflow-y: none;
+  overflow-y: hidden;
+}
 .App-intro {
   font-size: large;
 }
-
+.div-resize{
+   height: 80%;
+   width:100%;
+}
 .App-map{
   
-  height: 0px;
-  margin-top: 80%; 
   /*changes map's top value*/
 }
+.result{
+  word-wrap: break-word;
+  max-width:70%;
+  width:70%;
+  margin-left: 20px;
+  white-space: -moz-pre-wrap !important;  /* Mozilla, since 1999 */
+white-space: -webkit-pre-wrap; /*Chrome & Safari */ 
+white-space: -pre-wrap;      /* Opera 4-6 */
+white-space: -o-pre-wrap;    /* Opera 7 */
+white-space: pre-wrap;       /* css-3 */
+word-wrap: break-word;       /* Internet Explorer 5.5+ */
+word-break: break-all;
+white-space: normal;
+}
+.resultb{
 
+  margin-left: 20px;
+}
 #static-map {
   width: 320px;
   height: 400px;
 }
 .App-show-result1 {
-    /*changes result top value*/
-  margin-top: -75%;
-  border-bottom: 1px solid black;
-  margin-bottom: 64%;
--webkit-margin-start: 20%;
-    text-align: center;
+  -webkit-margin-start: 20%;
+  text-align: center;
 }
 .map-img{
-    
-  width: 100%;
-  border-radius: 16px 16px;
-  border-color: #82a8c1;
-  border-style: solid;
-  box-shadow: 2px 2px 10px #B1B1B1;
-  margin-top: -209px;
-  border-width: 7px;
-  height: 326px;
 
 }
 .App-img{
@@ -55,6 +63,7 @@
 .fixer {
   width: 100%;
   overflow: hidden;
+  height:500px;
 }
 
 @keyframes App-logo-spin {

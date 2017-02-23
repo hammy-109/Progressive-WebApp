@@ -23,11 +23,11 @@ class App extends Component {
   render() { 
    const style ={
       linestyle:{
-        backgroundColor : '#281B5C',
+        backgroundColor : 'rgba(0,173,255,.54)',
         height  : '3px',
       },
       tabsStyle:{
-        backgroundColor : '#003F87 ',
+        backgroundColor : '#ffffff ',
         color : 'rgba(0,173,255,.54)',
 
         focus: {
@@ -41,8 +41,8 @@ class App extends Component {
       },
     }
     return (
-      <div>
-        <div>
+      <div className="tab-over">
+        <div className="tab-over">
           <Tabs
             onTabChange={this.onTabChange}
             selected={this.state.tabIndex} 
@@ -61,10 +61,10 @@ class App extends Component {
           <SwipeableViews 
             index={this.state.tabIndex} 
             onChangeIndex={this.onTabChange}> 
-            <div className="col-xs-12 fixer">
+            <div className="col-xs-12 fixer tab-over">
               <CameraCmp />
             </div>
-            <div className="col-xs-12 ">
+            <div className="col-xs-12 fixer tab-over">
               <MapCmp />
             </div>
           </SwipeableViews>

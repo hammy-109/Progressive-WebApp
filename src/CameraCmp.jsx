@@ -35,8 +35,6 @@ class CameraCmp extends Component {
       camera :{
       width :'fill',
       height:400,
-      marginLeft:'auto',
-      marginRight:'auto',
       },
       heading:{
         textAlign:'center',
@@ -45,23 +43,29 @@ class CameraCmp extends Component {
 
     const screenTypeScan = this.state.screenTypeScan;
     
-    const scanner = (<div className="row"> <div className="col-xs-offset-2 col-xs-8">
-      <h1 style={style.heading}>Scan QR code</h1>
-      <QrReader
-        maxImageSize={500}
-        delay={this.state.delay}
-        onError={this.handleError}
-        onScan={this.handleScan}
-        facingMode={this.state.facingMode}
-        style={style.camera}
-      />
-    </div> </div>);
+    const scanner = (
+      <div className="row tab-over"> 
+        <div className="col-xs-offset-2 col-xs-8 fixer">
+          <h1 style={style.heading}>Scan QR code</h1>
+          <QrReader
+            maxImageSize={500}
+            delay={this.state.delay}
+            onError={this.handleError}
+            onScan={this.handleScan}
+            facingMode={this.state.facingMode}
+            style={style.camera}
+          />
+        </div>
+      </div>);
     
-    const output = (<div>
-      <p>{this.state.result}</p>
-      <input type="button" value="Re-scan" onClick={this.toggleScan}/>
-    </div>);
-
+    const output = (
+      <div className="row tab-over">
+        <div classNAme="col-xs-offset-1 col-xs-4 ">
+        <p className="result">{this.state.result}</p>
+        <input  type="button" className="resultb" value="Re-scan" onClick={this.toggleScan}/>
+        </div>
+      </div>
+      );
     if (screenTypeScan) {
       return scanner;
     }

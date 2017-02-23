@@ -12,20 +12,20 @@ class MapCmp extends Component {
     this.initGeolocation();
   }
 
-  initGeolocation() {
+  initGeolocation = () => {
     if (navigator && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.successCallback.bind(this), this.errorCallback);
+      navigator.geolocation.getCurrentPosition(this.successCallback, this.errorCallback);
     }
     else {
       console.log('Geolocation is not supported');
     }
   }
 
-  errorCallback() {
+  errorCallback = () => {
     console.log("in errorCallback ");
   }
 
-  successCallback(position) {
+  successCallback = (position) => {
     const mapUrl = "https://maps.google.com/maps/api/staticmap?center=" + position.coords.latitude + ',' + position.coords.longitude + '&zoom=15&size=512x512&maptype=roadmap&sensor=false';
     console.log(mapUrl);
     this.setState({mapUrl : mapUrl})
@@ -38,19 +38,22 @@ class MapCmp extends Component {
   render(){
 
     return (
-      <div>
+      <div className="div-resize tab-over">
+      <div className="row">
+          <div className="col-xs-8 App-show-result1">
+           <span > latitude:  </span> <span id="demo1"></span> <br />
+           <span  > longitude:  </span> <span id="demo2"></span>
+           <hr/>
+          </div>
+        </div>
+        <br/>
         <div className="row">
-          <div className="col-xs-offset-1 col-xs-10 App-map">
-           <img className="map-img"  src={this.state.mapUrl} role="presentation"  /> 
+          <div className="col-xs-offset-1 col-xs-10 fixer">
+           <img   src={this.state.mapUrl} role="presentation"  /> 
           </div>
         </div>
 
-        <div className="row">
-          <div className="col-xs-offset-4 col-xs-8 App-show-result1">
-     		   <span > latitude:  </span> <span id="demo1"></span> <br />
-     		   <span  > longitude:  </span> <span id="demo2"></span>
-          </div>
-        </div>
+        
       </div>
     )
   }

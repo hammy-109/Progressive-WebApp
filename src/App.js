@@ -50,9 +50,9 @@ class App extends Component {
             tabsStyle={style.tabsStyle}
             tabs={
               [{
-                displayName: 'QR reader'
-              }, {
                 displayName: 'Location'
+              }, {
+                displayName: 'QR reader'
               }]}
           />
        </div>
@@ -61,12 +61,15 @@ class App extends Component {
           <SwipeableViews 
             index={this.state.tabIndex} 
             onChangeIndex={this.onTabChange}> 
-            <div className="col-xs-12 fixer tab-over">
-              <CameraCmp />
-            </div>
-            <div className="col-xs-12 fixer tab-over">
+            <div className="col-xs-12 fixer tab-over" 
+            >
               <MapCmp />
             </div>
+            <div className="col-xs-12 fixer tab-over" 
+            >
+              <CameraCmp />
+            </div>
+
           </SwipeableViews>
         </div>
 

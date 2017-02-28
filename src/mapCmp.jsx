@@ -1,22 +1,29 @@
 import './App.css';
-// import GoogleMap from 'google-map-react';
+import GoogleMap from 'google-map-react';
+import MyGreatPlace from './MyGreatPlace'
 import React, {Component} from 'react';
 
 class MapCmp extends Component {
+
   constructor(props) {
     super(props);
     this.state = {
-      mapUrl : null,
-    }
-    console.log(this.props,"mapCmp");
-    this.initGeolocation();
+      zoom: 17,
+      latitude:0,
+      longitude:0,
+      center:[0, 0],
+    };
+
+    let map = null;
+    let maps = null;
+    let marker = null;
+
   }
 
   initGeolocation = () => {
     if (navigator && navigator.geolocation) {
-      navigator.geolocation.getCurrentPosition(this.successCallback, this.errorCallback);
-    }
-    else {
+      navigator.geolocation.watchPosition(this.successCallback, this.errorCallback);
+    } else {
       console.log('Geolocation is not supported');
     }
   }
@@ -26,35 +33,83 @@ class MapCmp extends Component {
   }
 
   successCallback = (position) => {
-    const mapUrl = "https://maps.google.com/maps/api/staticmap?center=" + position.coords.latitude + ',' + position.coords.longitude + '&zoom=15&size=512x512&maptype=roadmap&sensor=false';
-    console.log(mapUrl);
-    this.setState({mapUrl : mapUrl})
-    const x = position.coords.latitude;
-    document.getElementById("demo1").innerHTML = x.toFixed(3);
-    const y = position.coords.longitude;
-    document.getElementById("demo2").innerHTML = y.toFixed(3);
+
+    const x= position.coords.latitude.toFixed(5);
+    const y=position.coords.longitude.toFixed(5);
+    if (this.state.latitude !== Number(x) && this.state.longitude !== Number(y)) {
+      this.setState({
+        latitude:Number(x),
+        longitude:Number(y),
+        center:[Number(x), Number(y)],
+      });
+    }
+
+
+}
+componentDidUpdate(prevProps, prevState) {
+  this.initMap(this.map, this.maps);
 }
 
+initMap(map, maps) {
+         if (!this.marker || this.marker=== null) {
+        this.marker = new maps.Marker({
+          position: {lat:this.state.latitude, lng: this.state.longitude},
+          map: map
+        });
+        } else {
+        const myLatlng = new maps.LatLng(this.state.latitude,this.state.longitude);
+        console.log(myLatlng);
+        this.marker.setPosition(myLatlng)
+        }
+      }
+
   render(){
+    console.log("Render");
+    const self=this;
+    const mapStyle = {heigth: "30px", overflow: 'hidden' };
+
+    function createMapOptions(maps) {
+      return {
+        zoomControlOptions: {
+          position: maps.ControlPosition.RIGHT_CENTER,
+          style: maps.ZoomControlStyle.SMALL,
+        },
+        mapTypeControlOptions: {
+          position: maps.ControlPosition.TOP_RIGHT,
+        },
+        mapTypeControl: false,
+      };
+    }
 
     return (
-      <div className="div-resize tab-over">
-      <div className="row">
-          <div className="col-xs-8 App-show-result1">
-           <span > latitude:  </span> <span id="demo1"></span> <br />
-           <span  > longitude:  </span> <span id="demo2"></span>
-           <hr/>
-          </div>
-        </div>
-        <br/>
         <div className="row">
-          <div className="col-xs-offset-1 col-xs-10 fixer">
-           <img   src={this.state.mapUrl} role="presentation"  /> 
-          </div>
-        </div>
+            <div className="col-xs-offset-1 col-xs-10 fixer">
+            <div>{this.state.latitude},{this.state.longitude}</div>
+              <GoogleMap
+                options={createMapOptions}
+                style={mapStyle}
+                yesIWantToUseGoogleMapApiInternals
+                onGoogleApiLoaded={({ map, maps }) => {
+                  this.map = map;
+                  this.maps = maps;
+                  this.initGeolocation();
+                  }}
 
-        
-      </div>
+                bootstrapURLKeys={{ key: 'AIzaSyClrg6TsqAGm4zfUTBcZGXMxdG2Sg3LnfM' }}
+                zoom={this.state.zoom}
+                center={this.state.center}
+
+              >
+                <MyGreatPlace
+
+                  lat={this.state.latitude}
+                  lng={this.state.longitude}
+
+                 />
+              </GoogleMap>
+            </div>
+
+        </div>
     )
   }
 }
